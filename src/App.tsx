@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "semantic-ui-css/semantic.min.css";
 import { Container } from "semantic-ui-react";
-import EventDashboard from "./Components/EventDashboard";
+import { sampleData } from "./Assets/SampleData";
+import EventDashboard from "./Components/EventDashboards/EventDashboard";
 import Navbar from "./Components/NavBar/Navbar";
 import "./Styles/Styles.css";
 
 function App() {
+  const [formOpen, setFormOpen] = useState<boolean>(false);
+
   return (
     <>
-      <Navbar />
+      <Navbar
+        SetIsOpenCurrentEvent={setFormOpen}
+        CurrentEventState={formOpen}
+      />
       <Container className="main">
-
-        <EventDashboard />
+        <EventDashboard EventData={sampleData} isCreateEventOpen={formOpen} />
       </Container>
-
     </>
   );
-};
+}
 
-export default App
+export default App;
